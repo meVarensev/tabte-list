@@ -1,0 +1,100 @@
+.textInput {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.3s;
+  width: 100%;
+
+  &:focus {
+    border: #0a5c96 1px solid;
+  }
+
+  &.xl {
+    height: 50px;
+    font-size: x-large;
+    padding: 8px 40px; // Adjust padding for xl size
+  }
+
+  &.md {
+    height: 40px;
+    font-size: medium;
+    padding: 8px 40px; // Adjust padding for md size
+  }
+
+  &.sm {
+    height: 30px;
+    font-size: xx-small;
+    padding: 6px 40px; // Adjust padding for sm size
+  }
+
+  &.xs {
+    height: 24px;
+    font-size: x-small;
+    padding: 4px 40px; // Adjust padding for xs size
+  }
+
+  &.border-none {
+    border-radius: 0;
+  }
+
+  &.border-xl {
+    border-radius: 16px;
+  }
+
+  &.border-md {
+    border-radius: 8px;
+  }
+
+  &.border-sm {
+    border-radius: 6px;
+  }
+
+  &.border-xs {
+    border-radius: 4px;
+  }
+}
+
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+
+
+.leftSection,
+.rightSection {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.leftSection {
+  left: 8px;
+
+  color: #848484;
+}
+
+.rightSection {
+  right: 8px;
+
+}
+
+.rightSection {
+  width: 27px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #008dff;
+  border-radius: 100%;
+  cursor: pointer;
+  border: none;
+  &:hover {
+    background-color: #116bb2;
+  }
+
+  &:active {
+    background-color: #0a5c96;
+  }
+}

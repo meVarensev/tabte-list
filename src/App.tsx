@@ -1,12 +1,19 @@
-import './App.css';
-import {Typography} from "./components/typography";
+import "./App.css";
+import { Header } from "./components/header/header";
+import { SearchForm } from "./components/search-form/search-form";
+import { Box } from "./components/box/box";
 
-function App () {
+function App() {
 
-    return (
-        <div className='App'>
-            <Typography>project-boot-ts</Typography>
-        </div>
-    );
+  return (
+    <div className="App">
+      <Header />
+      <Box marginTop={20}>
+        <SearchForm/>
+      </Box>
+
+    </div>
+  );
 }
+
 export default App;
