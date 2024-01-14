@@ -4,21 +4,22 @@ import { classNames } from "../../utils/class-names";
 
 interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   radius?: "xl" | "md" | "sm" | "xs";
-  size?: "xl" | "md" | "sm" | "xs";
+  customSize?: "xl" | "md" | "sm" | "xs";
   leftSection?: React.ReactNode;
   rightSection?: React.ReactNode;
 }
 
 const TextInput: FC<TextInputProps> = ({
                                          radius,
-                                         size = "md",
+                                         customSize = "md",
                                          placeholder,
                                          leftSection,
-                                         rightSection
+                                         rightSection,
+                                         ...rest
                                        }) => {
 
   const borderRadius = styles[`border-${radius}`];
-  const inputStyle = classNames(styles.textInput,{}, [styles[size],borderRadius]);
+  const inputStyle = classNames(styles.textInput, {}, [styles[customSize], borderRadius]);
 
   return (
     <div className={styles.inputWrapper}>
@@ -27,6 +28,7 @@ const TextInput: FC<TextInputProps> = ({
         type="text"
         className={inputStyle}
         placeholder={placeholder}
+        {...rest}
       />
       {rightSection && (
         <button type="submit" className={styles.rightSection}>
