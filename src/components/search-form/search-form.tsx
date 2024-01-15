@@ -6,9 +6,7 @@ import { TextInput } from "../text-input/text-input";
 interface SearchFormProps {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
-const SearchForm : React.FC<SearchFormProps> = ({handleChange}) => {
-
-  return (
+const SearchForm : React.FC<SearchFormProps> = ({handleChange}) => (
     <TextInput
       leftSection={
         <IconSearch width={20} stroke={1.5} />
@@ -24,6 +22,5 @@ const SearchForm : React.FC<SearchFormProps> = ({handleChange}) => {
     />
 
   );
-};
 
 export { SearchForm };
