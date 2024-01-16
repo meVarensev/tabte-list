@@ -16,5 +16,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --border: 1px solid #848484
+  --border: 1px solid #848484;
+
+  --btn-color: #5558FA;
 }

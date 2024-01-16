@@ -1,4 +1,4 @@
-import { IconArrowRight, IconSearch } from "@tabler/icons-react";
+import {  IconSearch } from "@tabler/icons-react";
 import React from "react";
 import { TextInput } from "../text-input/text-input";
 

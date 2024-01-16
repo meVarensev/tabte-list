@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./table.module.scss";
 import { useSortableTable } from "../../hook/use-sort-table";
 import { useFetchPerson } from "../../hook/use-fetch-person";
 import { type Person, TableColumn } from "../../utils/person-type";
+import { Modal } from "../modal/modal";
 
 interface SortableTableProps {
   users: Person[];
   columns: TableColumn[];
 }
 
+
+
 const SortableTable: React.FC<SortableTableProps> = ({ users, columns }) => {
   const { sortedData, sortConfig, handleSort } = useSortableTable<Person>(users);
-  const { data, isLoading, error, fetchData } = useFetchPerson<Person>();
+  const { data  , isLoading, error, fetchData } = useFetchPerson<Person>();
+  const [showModal, setShowModal] = useState<boolean>(false);
   const handleRowClick = (person: Person) => {
     fetchData(person.id);
+    setShowModal(true);
   };
 
-  console.log({ data, isLoading, error }, "SortableTable");
   return (
     <div className={styles.scrollTable}>
 
@@ -60,7 +64,7 @@ const SortableTable: React.FC<SortableTableProps> = ({ users, columns }) => {
           </tbody>
         </table>
       </div>
-
+    <Modal showModal={showModal} setShowModal={setShowModal}  person={{ data, isLoading, error }}/>
     </div>
 
   );
