@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 
+/**
+ * Пользовательский хук для выполнения асинхронных запросов.
+ * @param {URL | null} url - URL для получения данных.
+ * @returns {FetchResult<T>} - Объект с данными, состоянием загрузки и ошибкой.
+ */
+
 interface FetchResult<T> {
   data: T | null;
   isLoading: boolean;
   error: Error | null;
 }
-
 export function useFetch<T>(url: URL | null): FetchResult<T> {
   const [data  , setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);

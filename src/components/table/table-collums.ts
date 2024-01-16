@@ -1,4 +1,5 @@
-import { TableColumn } from "../../utils/person-type";
+import { TableColumn } from "../../entities/table-column";
+
 
 export const columns:TableColumn[] =[
   { key: "firstName", label: "firstName" },

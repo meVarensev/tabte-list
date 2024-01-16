@@ -68,9 +68,3 @@ export interface Person {
   userAgent: string;
   crypto: Crypto;
 }
-
-
-export interface TableColumn {
-  key: keyof Person | "city";
-  label: string;
-}

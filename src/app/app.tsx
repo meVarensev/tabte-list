@@ -2,17 +2,18 @@
 import "./App.css";
 
 import React, { useState } from "react";
-import { useDebounce } from "./hook/use-debounce";
-import { useFetch } from "./hook/use-fetch";
-import { Header } from "./components/header/header";
-import { SearchForm } from "./components/search-form/search-form";
+import { useDebounce } from "../shared/hook/use-debounce";
+import { useFetch } from "../shared/hook/use-fetch";
+import { Header } from "../components/header/header";
+import { SearchForm } from "../components/search-form/search-form";
 
-import { Box } from "./components/box/box";
-import { SortableTable } from "./components/table/table";
-import { urlDirector } from "./utils/get-url";
-import { columns } from "./components/table/table-collums";
-import { Person } from "./utils/person-type";
-import { Typography } from "./components/typography/typography";
+import { Box } from "../shared/ui-kit/box/box";
+import { SortableTable } from "../components/table/table";
+import { urlDirector } from "../shared/utils/url-builder";
+import { columns } from "../components/table/table-collums";
+import { Person } from "../entities/person-type";
+import { Typography } from "../shared/ui-kit/typography/typography";
+import { Loader } from "../shared/ui-kit/loader/loader";
 
 
 interface Response {
@@ -37,7 +38,7 @@ function App() {
       </Box>
 
       <Box marginBottom={20}>
-        {isLoading && <Typography>Loading...</Typography>}
+        {isLoading && <Loader/>}
         {error && <Typography>Error: {error.message}</Typography>}
         {data?.users.length === 0 && <Typography>No users found</Typography>}
         {(data && data.users.length !== 0) && <SortableTable users={data.users} columns={columns} />}

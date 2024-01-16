@@ -1,4 +1,4 @@
-import { Typography } from '../typography/typography';
+import { Typography } from '../../shared/ui-kit/typography/typography';
 import styles from './header.module.scss';
 
 function Header() {

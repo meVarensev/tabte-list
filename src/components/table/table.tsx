@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styles from "./table.module.scss";
-import { useSortableTable } from "../../hook/use-sort-table";
-import { useFetchPerson } from "../../hook/use-fetch-person";
-import { type Person, TableColumn } from "../../utils/person-type";
+import { useSortableTable } from "../../shared/hook/use-sort-table";
+import { useFetchPerson } from "../../shared/hook/use-fetch-person";
+import { type Person } from "../../entities/person-type";
+import { type TableColumn } from "../../entities/table-column";
 import { Modal } from "../modal/modal";
 
 interface SortableTableProps {

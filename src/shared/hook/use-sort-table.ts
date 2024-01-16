@@ -1,5 +1,11 @@
 import { useMemo, useState } from "react";
-
+/**
+ * Пользовательский хук для создания сортируемой таблицы.
+ * @param {T[]} initialData - Начальные данные для таблицы.
+ * @param {SortConfig<T>} initialSortConfig - Начальная конфигурация сортировки.
+ * @returns {UseSortableTable<T>} - Объект, содержащий отсортированные данные,
+ * конфигурацию сортировки и функцию для обработки сортировки.
+ */
 const asc = "asc";
 const desc = "desc";
 
@@ -31,7 +37,6 @@ const useSortableTable = <T extends Record<string, any>>(
   initialSortConfig: SortConfig<T> = { key: "id", direction: null }
 ): UseSortableTable<T> => {
   const [sortConfig, setSortConfig] = useState<SortConfig<T>>(initialSortConfig);
-
 
   const sortedData = useMemo(() => {
     if (sortConfig.direction === null) {

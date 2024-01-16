@@ -1,4 +1,10 @@
 import {classNames} from "./class-names";
+/**
+ * Функция для создания компонента типографии и соответствующих ему стилей.
+ * @param {TypographyVariant} variant - Вариант типографии.
+ * @param {string} baseStyle - Базовый стиль.
+ * @returns {Object} - Объект с компонентом и комбинированными классами.
+ */
 
 const typographyVariants = {
     h1: 'h1',

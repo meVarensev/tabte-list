@@ -1,14 +1,14 @@
 import React, { FC } from "react";
-import { Typography } from "../typography/typography";
-import { Box } from "../box/box";
-import { Person } from "../../utils/person-type";
+import { Typography } from "../../shared/ui-kit/typography/typography";
+import { Box } from "../../shared/ui-kit/box/box";
+import { Person } from "../../entities/person-type";
 import styles from "./modal.module.scss";
 
-interface PersonDetailsModalProps {
+interface PersonDetailsProps {
   data: Person
 }
 
-const PersonDetailsModal: FC<PersonDetailsModalProps> = ({data}) => (
+const PersonDetails: FC<PersonDetailsProps> = ({data}) => (
     <Box className={styles.TypographyContent}>
       <table>
         <tbody>
@@ -45,4 +45,4 @@ const PersonDetailsModal: FC<PersonDetailsModalProps> = ({data}) => (
     </Box>
   );
 
-export { PersonDetailsModal };
+export { PersonDetails };

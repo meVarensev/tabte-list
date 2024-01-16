@@ -1,7 +1,6 @@
 import {  IconSearch } from "@tabler/icons-react";
 import React from "react";
-import { TextInput } from "../text-input/text-input";
-
+import { TextInput } from "../../shared/ui-kit/text-input/text-input";
 
 interface SearchFormProps {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;

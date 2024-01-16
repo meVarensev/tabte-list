@@ -1,6 +1,6 @@
 .scrollTableBody {
   height: 700px;
-  overflow-x: auto;
+  overflow-y: auto;
 
 
   tr{
@@ -12,7 +12,6 @@
 
 .scrollTable {
   cursor: pointer;
-
   table {
     width: 100%;
     table-layout: fixed;

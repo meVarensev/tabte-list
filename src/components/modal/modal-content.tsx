@@ -1,8 +1,8 @@
 import React from "react";
 import {IconX} from  "@tabler/icons-react";
 
-import { Button } from "../button/button";
-import { Box } from "../box/box";
+import { Button } from "../../shared/ui-kit/button/button";
+import { Box } from "../../shared/ui-kit/box/box";
 import styles from "./modal.module.scss";
 
 interface PropsModalContent {

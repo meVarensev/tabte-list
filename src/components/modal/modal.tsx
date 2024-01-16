@@ -1,12 +1,13 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { createPortal } from "react-dom";
 import styles from "./modal.module.scss";
-import { Person } from "../../utils/person-type";
+import { Person } from "../../entities/person-type";
 import { ModalContent } from "./modal-content";
-import { useFetch } from "../../hook/use-fetch";
-import { Typography } from "../typography/typography";
-import { Box } from "../box/box";
-import { PersonDetailsModal } from "./person-details-modal";
+import { useFetch } from "../../shared/hook/use-fetch";
+import { Typography } from "../../shared/ui-kit/typography/typography";
+import { Box } from "../../shared/ui-kit/box/box";
+import { PersonDetails } from "./person-details";
+import { Loader } from "../../shared/ui-kit/loader/loader";
 
 interface ModalProps<T> {
   showModal: boolean;
@@ -21,12 +22,12 @@ const Modal: FC<ModalProps<Person | null>> = ({ showModal, setShowModal, person 
       {showModal &&
         createPortal(
           <Box className={styles.modalContainer}>
-            {isLoading && <Typography>Loading...</Typography>}
+            {isLoading && <Loader/>}
             {error && <Typography>Error: {error.message}</Typography>}
             {data &&
               <Box className={styles.modalContent}>
                 <ModalContent onClose={() => setShowModal(false)}>
-                  <PersonDetailsModal data={data} />
+                  <PersonDetails data={data} />
                 </ModalContent>
               </Box>
             }
