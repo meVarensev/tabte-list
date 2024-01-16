@@ -1,5 +1,4 @@
-
-import "./App.css";
+import "./app.css";
 
 import React, { useState } from "react";
 import { useDebounce } from "../shared/hook/use-debounce";
