@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useFetch } from "./use-fetch";
 import { urlDirector } from "../utils/get-url";
 
-interface PersonDataResult extends ReturnType<typeof useFetch> {
+interface PersonDataResult<T> extends ReturnType<typeof useFetch<T | null>> {
   fetchData: (personId: number) => void;
 }
 
-export function useFetchPerson<T>(): PersonDataResult {
+
+export function useFetchPerson<T>(): PersonDataResult<T> {
   const [url, setUrl] = useState<URL | null>(null);
   const { data, isLoading, error } = useFetch<T | null>(url);
 
