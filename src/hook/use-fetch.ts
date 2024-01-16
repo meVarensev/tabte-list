@@ -6,7 +6,7 @@ interface FetchResult<T> {
   error: Error | null;
 }
 
-export function useFetch<T>(url: URL): FetchResult<T> {
+export function useFetch<T>(url: URL | null): FetchResult<T> {
   const [data  , setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
@@ -15,10 +15,13 @@ export function useFetch<T>(url: URL): FetchResult<T> {
 
     const abortController = new AbortController();
     const { signal } = abortController;
-
+    if (!url) {
+      return  abortController.abort();
+    }
     setIsLoading(true);
     setData(null);
     setError(null);
+
 
     fetch(url, { signal })
       .then((res) => res.json())

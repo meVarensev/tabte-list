@@ -16,9 +16,9 @@ const SearchForm : React.FC<SearchFormProps> = ({handleChange}) => (
       placeholder="Search"
 
       onChange={handleChange}
-      rightSection={
-        <IconArrowRight width={20} stroke={1.5} />
-      }
+      // rightSection={
+      //   <IconArrowRight width={20} stroke={1.5} />
+      // }
     />
 
   );

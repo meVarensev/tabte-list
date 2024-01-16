@@ -1,16 +1,22 @@
 import React from "react";
 import styles from "./table.module.scss";
 import { useSortableTable } from "../../hook/use-sort-table";
-import { Person, TableColumn } from "../../utils/person-type";
+import { useFetchPerson } from "../../hook/use-fetch-person";
+import { type Person, TableColumn } from "../../utils/person-type";
 
 interface SortableTableProps {
-  data: Person[];
+  users: Person[];
   columns: TableColumn[];
 }
 
-const SortableTable: React.FC<SortableTableProps> = ({ data, columns }) => {
-  const { sortedData, sortConfig, handleSort } = useSortableTable<Person>(data);
+const SortableTable: React.FC<SortableTableProps> = ({ users, columns }) => {
+  const { sortedData, sortConfig, handleSort } = useSortableTable<Person>(users);
+  const { data, isLoading, error, fetchData } = useFetchPerson<Person>();
+  const handleRowClick = (person: Person) => {
+    fetchData(person.id);
+  };
 
+  console.log({ data, isLoading, error }, "SortableTable");
   return (
     <div className={styles.scrollTable}>
 
@@ -36,8 +42,11 @@ const SortableTable: React.FC<SortableTableProps> = ({ data, columns }) => {
       <div className={styles.scrollTableBody}>
         <table>
           <tbody>
-          {sortedData.map(person => (
-            <tr key={person.id} className={styles.tableWidth}>
+          {sortedData.map((person) => (
+            <tr key={person.id}
+                className={styles.tableWidth}
+                onClick={() => handleRowClick(person)}
+            >
               <td>{person.firstName}</td>
               <td>{person.lastName}</td>
               <td>{person.maidenName}</td>
