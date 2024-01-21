@@ -22,8 +22,8 @@ const Modal: FC<ModalProps<Person | null>> = ({ showModal, setShowModal, person 
       {showModal &&
         createPortal(
           <Box className={styles.modalContainer}>
-            {isLoading && <Loader/>}
-            {error && <Typography>Error: {error.message}</Typography>}
+            {isLoading && <Loader />}
+            {error && <Typography style={{ color: "red" }}>Error: {error.message}</Typography>}
             {data &&
               <Box className={styles.modalContent}>
                 <ModalContent onClose={() => setShowModal(false)}>

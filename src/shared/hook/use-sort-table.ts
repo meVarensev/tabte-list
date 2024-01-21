@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+
 /**
  * Пользовательский хук для создания сортируемой таблицы.
  * @param {T[]} initialData - Начальные данные для таблицы.
@@ -10,6 +11,7 @@ const asc = "asc";
 const desc = "desc";
 
 type Direction = typeof asc | typeof desc | null;
+
 interface SortConfig<T> {
   key: keyof T;
   direction: Direction;
@@ -21,7 +23,7 @@ interface UseSortableTable<T> {
   handleSort: (key: keyof T | "city") => void;
 }
 
-function getSortValue<T extends Record<string, any>>(value: T, key: keyof T ) {
+function getSortValue<T extends Record<string, any>>(value: T, key: keyof T) {
   if (key === "address") {
     return value.address.address;
   }
@@ -65,11 +67,24 @@ const useSortableTable = <T extends Record<string, any>>(
   }, [initialData, sortConfig]);
 
   const handleSort = (key: keyof T) => {
-    if (sortConfig.key === key && sortConfig.direction === asc) {
-      setSortConfig({ key, direction: desc });
-    } else {
-      setSortConfig({ key, direction: asc });
-    }
+    setSortConfig((prevConfig) => {
+      if (prevConfig.key === key) {
+        // Если текущий ключ совпадает с переданным
+        if (prevConfig.direction === asc) {
+          return { key, direction: desc };
+        }
+        if (prevConfig.direction === desc) {
+          // Если сортировка в порядке убывания, то сбрасываем
+          return { key, direction: null };
+        }
+        // Если сортировка сброшена, то устанавливаем сортировку по возрастанию
+        return { key, direction: asc };
+
+      }
+      // Если ключ не совпадает с текущим, устанавливаем новый ключ и направление (по умолчанию сортировка не применяется)
+      return { key, direction: asc };
+
+    });
   };
 
   return { sortedData, sortConfig, handleSort };

@@ -11,16 +11,16 @@ interface SortableTableProps {
   columns: TableColumn[];
 }
 
-
-
 const SortableTable: React.FC<SortableTableProps> = ({ users, columns }) => {
   const { sortedData, sortConfig, handleSort } = useSortableTable<Person>(users);
-  const { data  , isLoading, error, fetchData } = useFetchPerson<Person>();
+  const { data, isLoading, error, fetchData } = useFetchPerson<Person>();
   const [showModal, setShowModal] = useState<boolean>(false);
   const handleRowClick = (person: Person) => {
     fetchData(person.id);
     setShowModal(true);
   };
+
+
 
   return (
     <div className={styles.scrollTable}>
@@ -34,9 +34,13 @@ const SortableTable: React.FC<SortableTableProps> = ({ users, columns }) => {
               onClick={() => handleSort(column.key)}
               style={{ width: column.key === "age" || column.key === "gender" ? "50px" : "auto" }}
             >
-              {column.label}
+              {`${column.label} `}
               {sortConfig.key === column.key && (
-                <span>{sortConfig.direction === "asc" ? " ▲" : " ▼"}</span>
+                <>
+                  <span className={styles.sortBtn}>{sortConfig.direction === "asc" && "▲"}</span>
+                  <span className={styles.sortBtn}>{sortConfig.direction === "desc" &&  "▼"}</span>
+                  <span className={styles.sortBtn}>{!sortConfig.direction  && ""}</span>
+                </>
               )}
             </th>
           ))}
@@ -52,6 +56,7 @@ const SortableTable: React.FC<SortableTableProps> = ({ users, columns }) => {
                 className={styles.tableWidth}
                 onClick={() => handleRowClick(person)}
             >
+
               <td>{person.firstName}</td>
               <td>{person.lastName}</td>
               <td>{person.maidenName}</td>
@@ -65,7 +70,7 @@ const SortableTable: React.FC<SortableTableProps> = ({ users, columns }) => {
           </tbody>
         </table>
       </div>
-    <Modal showModal={showModal} setShowModal={setShowModal}  person={{ data, isLoading, error }}/>
+      <Modal showModal={showModal} setShowModal={setShowModal} person={{ data, isLoading, error }} />
     </div>
 
   );
